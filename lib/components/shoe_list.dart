@@ -22,7 +22,7 @@ class ShoeList extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.onPrimary,
       ),
       width: 350,
       height: 300,
@@ -41,8 +41,9 @@ class ShoeList extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               shoe.description,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
+                color: Theme.of(context).colorScheme.onSecondary,
               ),
               textAlign: TextAlign.center,
             ),
@@ -57,9 +58,10 @@ class ShoeList extends StatelessWidget {
                   children: [
                     Text(
                       shoe.name,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ),
                     const SizedBox(
@@ -67,9 +69,10 @@ class ShoeList extends StatelessWidget {
                     ),
                     Text(
                       shoe.price,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ),
                   ],

@@ -15,33 +15,41 @@ class Cart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ModelCart>(
       builder: (context, value, child) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "My Cart",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
+        return Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "My Cart..",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: value.getUserCart().length,
-                  itemBuilder: (context, index) {
-                    Mshoe indiviualItem = value.getUserCart()[index];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: CartItems(
-                        shoe: indiviualItem,
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: value.getUserCart().length,
+                    itemBuilder: (context, index) {
+                      Mshoe indiviualItem = value.getUserCart()[index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: CartItems(
+                          shoe: indiviualItem,
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
         );
       },

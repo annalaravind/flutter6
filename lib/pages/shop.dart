@@ -21,15 +21,22 @@ class _ShopState extends State<Shop> {
 
     showDialog(
       context: context,
-      builder: (context) => const AlertDialog(
+      builder: (context) => AlertDialog(
+        backgroundColor: Theme.of(context).colorScheme.onSecondary,
         title: Text(
           "Successfully Added",
           style: TextStyle(
             fontSize: 20,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
         ),
-        content: Text("Go to Cart..."),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        content: Text(
+          "Go to Cart...",
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+        ),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       ),
     );
   }
@@ -38,11 +45,11 @@ class _ShopState extends State<Shop> {
   Widget build(BuildContext context) {
     return Consumer<ModelCart>(
       builder: (context, value, child) => Scaffold(
-        backgroundColor: const Color.fromARGB(255, 223, 220, 220),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         body: Column(
           children: [
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               width: double.infinity,
               height: 60,
               decoration: BoxDecoration(
@@ -77,24 +84,24 @@ class _ShopState extends State<Shop> {
                       Icons.search,
                       size: 24,
                       color: Color.fromARGB(255, 99, 98, 98),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
               child: Text(
                 "FOREVER FASTER IS ALWAYS FIRST, NEVER SECOND, NEVER THIRD.",
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
-                  color: Color.fromARGB(255, 99, 98, 98),
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 22),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -103,11 +110,11 @@ class _ShopState extends State<Shop> {
                       Text(
                         "Hot Deals ",
                         style: TextStyle(
-                          color: Color.fromARGB(255, 70, 70, 70),
                           fontSize: 25,
+                          color: Theme.of(context).colorScheme.onSecondary,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "🔥",
                         style: TextStyle(
                           color: Colors.red,
@@ -116,7 +123,7 @@ class _ShopState extends State<Shop> {
                       )
                     ],
                   ),
-                  Text(
+                  const Text(
                     "See all",
                     style: TextStyle(
                       color: Colors.blue,

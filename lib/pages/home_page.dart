@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo/components/bottom_navbar.dart';
 import 'package:flutter_todo/pages/cart.dart';
 import 'package:flutter_todo/pages/shop.dart';
+import 'package:flutter_todo/theme/theme_user.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const HomePage());
@@ -31,9 +33,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 223, 220, 220),
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Theme.of(context).colorScheme.background,
+        title: const Text(
+          "Flutter e-Commerce",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        centerTitle: true,
+        toolbarHeight: 80,
         // leading: Builder(
         //   builder: (context) {
         //     return IconButton(
@@ -46,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         // ),
       ),
       drawer: Drawer(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Theme.of(context).colorScheme.primary,
         // To remove the border radius....
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(0.0),
@@ -59,9 +69,18 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   DrawerHeader(
-                    child: Image.asset(
-                      'lib/images/puma.png',
-                      color: Colors.white,
+                    child: Consumer<ThemeUser>(
+                      builder: (context, themeUser, _) {
+                        return ColorFiltered(
+                          colorFilter: ColorFilter.mode(
+                            themeUser.isDarkMode ? Colors.white : Colors.black,
+                            BlendMode.srcIn,
+                          ),
+                          child: Image.asset(
+                            'lib/images/puma.png',
+                          ),
+                        );
+                      },
                     ),
                   ),
                   ListTile(
@@ -72,13 +91,11 @@ class _HomePageState extends State<HomePage> {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Icon(
                         Icons.home,
-                        color: Colors.white,
                       ),
                     ),
                     title: const Text(
                       "Home",
                       style: TextStyle(
-                        color: Colors.white,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
@@ -88,15 +105,41 @@ class _HomePageState extends State<HomePage> {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Icon(
                         Icons.info,
-                        color: Colors.white,
                       ),
                     ),
                     title: Text(
                       "About",
                       style: TextStyle(
-                        color: Colors.white,
                         fontWeight: FontWeight.w800,
                       ),
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Provider.of<ThemeUser>(context, listen: false)
+                          .toggleOnTap();
+                    },
+                    leading: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Consumer<ThemeUser>(
+                        builder: (context, themeUser, _) {
+                          return Icon(
+                            themeUser.isDarkMode
+                                ? Icons.light_mode
+                                : Icons.dark_mode,
+                          );
+                        },
+                      ),
+                    ),
+                    title: Consumer<ThemeUser>(
+                      builder: (context, themeUser, _) {
+                        return Text(
+                          themeUser.isDarkMode ? "Light Mode" : "Dark Mode",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w800,
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -109,13 +152,11 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Icon(
                     Icons.logout,
-                    color: Colors.white,
                   ),
                 ),
                 title: Text(
                   "Logout",
                   style: TextStyle(
-                    color: Colors.white,
                     fontWeight: FontWeight.w800,
                   ),
                 ),

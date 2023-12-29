@@ -22,15 +22,22 @@ class _CartItemsState extends State<CartItems> {
 
     showDialog(
       context: context,
-      builder: (context) => const AlertDialog(
+      builder: (context) => AlertDialog(
+        backgroundColor: Theme.of(context).colorScheme.onSecondary,
         title: Text(
           "Successfully Deleted",
           style: TextStyle(
             fontSize: 20,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
         ),
-        content: Text("Go to Shop..."),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        content: Text(
+          "Go to Shop...",
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+        ),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       ),
     );
   }
@@ -39,8 +46,8 @@ class _CartItemsState extends State<CartItems> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary,
       ),
       child: ListTile(
         leading: Image.asset(widget.shoe.imagePath),
